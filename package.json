@@ -1,0 +1,34 @@
+{
+  "name": "calculate",
+  "displayName": "Calculate",
+  "description": "Select some math, evaluate it",
+  "version": "0.0.1",
+  "publisher": "Andrew Carreiro",
+  "engines": {
+    "vscode": "^0.10.6"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:extension.calculate"
+  ],
+  "main": "./extension",
+  "contributes": {
+    "commands": [
+      {
+        "command": "extension.calculate",
+        "title": "Calculate"
+      }
+    ]
+  },
+  "scripts": {
+    "postinstall": "node ./node_modules/vscode/bin/install"
+  },
+  "devDependencies": {
+    "vscode": "^0.11.0"
+  },
+  "dependencies": {
+    "mathjs": "@2.7.0"
+  }
+}
