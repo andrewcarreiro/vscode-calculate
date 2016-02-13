@@ -3,7 +3,7 @@
   "displayName": "Calculate",
   "description": "Select some math, evaluate it",
   "version": "0.0.1",
-  "publisher": "Andrew Carreiro",
+  "publisher": "acarreiro",
   "engines": {
     "vscode": "^0.10.6"
   },
