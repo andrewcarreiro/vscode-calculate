@@ -11,3 +11,7 @@ Uses [Math.js](https://github.com/josdejong/mathjs) for evaluating expressions. 
 3. The evaluated result will appear after your selection
 
 ![Selecting multiple items and running the calculate function](http://i.imgur.com/a1LDrLH.gif "Selecting multiple items and running the calculate function")
+
+## License
+Copyright (c) 2016 Andrew Carreiro
+Licensed under the WTFPL license.
