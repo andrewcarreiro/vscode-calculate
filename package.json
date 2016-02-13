@@ -2,7 +2,7 @@
   "name": "calculate",
   "displayName": "Calculate",
   "description": "Select some math, evaluate it",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "publisher": "acarreiro",
   "engines": {
     "vscode": "^0.10.6"
