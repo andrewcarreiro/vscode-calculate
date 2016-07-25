@@ -12,6 +12,10 @@ Uses [Math.js](https://github.com/josdejong/mathjs) for evaluating expressions. 
 
 ![Selecting multiple items and running the calculate function](http://i.imgur.com/a1LDrLH.gif "Selecting multiple items and running the calculate function")
 
+## Available Commands
+- **Calculate** calculates selected expression, and appends "=" with the result
+- **Calculate and Replace** calculates selected expression, and replaces it with the result
+
 ## License
 Copyright (c) 2016 Andrew Carreiro
 Licensed under the WTFPL license.

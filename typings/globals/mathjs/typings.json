@@ -1,0 +1,8 @@
+{
+  "resolution": "main",
+  "tree": {
+    "src": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/abe7af3825830f38e559cb79ae20eb033d7a7d99/mathjs/mathjs.d.ts",
+    "raw": "registry:dt/mathjs#0.0.0+20160704082708",
+    "typings": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/abe7af3825830f38e559cb79ae20eb033d7a7d99/mathjs/mathjs.d.ts"
+  }
+}

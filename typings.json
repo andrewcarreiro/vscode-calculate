@@ -1,0 +1,5 @@
+{
+  "globalDependencies": {
+    "mathjs": "registry:dt/mathjs#0.0.0+20160704082708"
+  }
+}
