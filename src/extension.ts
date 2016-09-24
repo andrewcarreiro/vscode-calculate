@@ -8,12 +8,26 @@ import ErrorAlert from "./erroralert";
 export function activate(context) {
 	
 	context.subscriptions.push(
-		vscode.commands.registerCommand('extension.calculate', runCalculate(insertResult))
+		vscode.commands.registerCommand('extension.calculate', runCalculate(insertResultWithEquals))
 	);
 
 	context.subscriptions.push(
 		vscode.commands.registerCommand('extension.calculateReplace', runCalculate(overwriteResult))
 	);
+
+	context.subscriptions.push(
+		vscode.commands.registerCommand('extension.count', ()=>runCount(insertResult))
+	);
+}
+
+function runCount ( editMaker : IEditMaker ) {
+	let erroralert = new ErrorAlert();
+
+	let actorFunction : IActorOnEveryEditor  = function ( errorLogger : ErrorAlert, textEditorEdit: vscode.TextEditorEdit, activeTextEditor, selection : vscode.Selection, index : number ){
+		editMaker( textEditorEdit, selection, index);
+	};
+
+	onEveryEditor(erroralert,actorFunction);
 }
 
 /**
@@ -21,41 +35,49 @@ export function activate(context) {
  */
 function runCalculate ( editMaker : IEditMaker ){
 	return () => {
-
-		var win = vscode.window;
 		let erroralert = new ErrorAlert(); 
-
-		var activeTextEditor = win.activeTextEditor;
-		
-		if( activeTextEditor === undefined ){
-			erroralert.throwSingleErrorImmediately("NO_FOCUS");
-			return false;
-		}
-
-		activeTextEditor.edit( (textEditorEdit) => {
-			activeTextEditor.selections.forEach( (selection) => {
-
-				var selectedText = activeTextEditor.document.getText(selection);
+		onEveryEditor(erroralert, function ( errorLogger : ErrorAlert, textEditorEdit: vscode.TextEditorEdit, activeTextEditor, selection : vscode.Selection ) {
+			var selectedText = activeTextEditor.document.getText(selection);
 
 
-				if ( selectedText === "" ){
-					erroralert.saveError("NO_SELECT");
-					return;
-				}
-				
-				try{
-					var evaluatedMath = math.eval(selectedText.toString());
-					editMaker(textEditorEdit,selection,evaluatedMath);
-				}catch (e){
-					erroralert.saveError("CALC_ERR",selectedText.toString());
-				}
-				
-			});
-
-			erroralert.throwSavedErrorIfNecessary();
+			if ( selectedText === "" ){
+				erroralert.saveError("NO_SELECT");
+				return;
+			}
 			
-		});
+			try{
+				var evaluatedMath = math.eval(selectedText.toString());
+				editMaker(textEditorEdit,selection,evaluatedMath);
+			}catch (e){
+				erroralert.saveError("CALC_ERR",selectedText.toString());
+			}
+		})
+		
 	}
+}
+
+interface IActorOnEveryEditor {
+	( errorLogger : ErrorAlert, textEditorEdit: vscode.TextEditorEdit, activeTextEditor : vscode.TextEditor, selection : vscode.Selection, index? : number ) : void
+}
+
+function onEveryEditor ( errorLogger, ActorOnEveryEditor : IActorOnEveryEditor) {
+	var win = vscode.window;
+
+	var activeTextEditor = win.activeTextEditor;
+	
+	if( activeTextEditor === undefined ){
+		errorLogger.throwSingleErrorImmediately("NO_FOCUS");
+		return false;
+	}
+
+	activeTextEditor.edit( (textEditorEdit) => {
+		activeTextEditor.selections.forEach( (selection, index) => {
+			ActorOnEveryEditor(errorLogger,textEditorEdit,activeTextEditor,selection,index);
+		});
+
+		errorLogger.throwSavedErrorIfNecessary();
+		
+	});
 }
 
 
@@ -66,8 +88,12 @@ interface IEditMaker {
 	( edit : vscode.TextEditorEdit, selection : vscode.Selection, result : number ) : void;
 }
 
-let insertResult : IEditMaker = function ( edit : vscode.TextEditorEdit, selection : vscode.Selection, result : number){
+let insertResultWithEquals : IEditMaker = function ( edit : vscode.TextEditorEdit, selection : vscode.Selection, result : number){
 	edit.insert(selection.end, "="+result);
+}
+
+let insertResult : IEditMaker = function ( edit : vscode.TextEditorEdit, selection : vscode.Selection, result : number){
+	edit.insert(selection.end, String(result));
 }
 
 let overwriteResult : IEditMaker = function ( edit : vscode.TextEditorEdit, selection : vscode.Selection, result : number){

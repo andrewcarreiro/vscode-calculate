@@ -34,6 +34,10 @@
       {
         "command": "extension.calculateReplace",
         "title": "Calculate and Replace"
+      },
+      {
+        "command": "extension.count",
+        "title": "Count"
       }
     ]
   },
