@@ -10,7 +10,7 @@ Uses [Math.js](https://github.com/josdejong/mathjs) for evaluating expressions. 
 2. Enter the Command Pallette (F1), and type "calculate"
 3. The evaluated result will appear after your selection
 
-![Selecting multiple items and running the calculate function](http://i.imgur.com/a1LDrLH.gif "Selecting multiple items and running the calculate function")
+![Selecting multiple items and running the calculate function](https://i.imgur.com/a1LDrLH.gif "Selecting multiple items and running the calculate function")
 
 ## Available Commands
 - **Calculate** calculates selected expression, and appends "=" with the result
