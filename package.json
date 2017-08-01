@@ -38,19 +38,29 @@
       {
         "command": "extension.count",
         "title": "Count"
+      },
+      {
+        "command": "extension.countAlpha",
+        "title": "Count Alphabetical"
       }
     ]
   },
   "scripts": {
     "vscode:prepublish": "node ./node_modules/vscode/bin/compile",
     "compile": "node ./node_modules/vscode/bin/compile -watch -p ./",
-    "postinstall": "node ./node_modules/vscode/bin/install"
+    "postinstall": "node ./node_modules/vscode/bin/install",
+    "test": "jest"
   },
   "devDependencies": {
-    "typescript": "2.0.0",
-    "vscode": "^0.11.14"
+    "@types/jest": "20.0.0",
+    "jest": "20.0.0",
+    "typescript": "2.0.6",
+    "vscode": "0.11.14"
   },
   "dependencies": {
     "mathjs": "3.3.0"
+  },
+  "jest": {
+    "testRegex": "/out/test/.*\\.(ts|tsx|js)$"
   }
 }

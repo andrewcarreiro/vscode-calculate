@@ -1,5 +1,6 @@
 import * as math from "mathjs";
 import * as vscode from "vscode";
+import * as lib from "./lib";
 import ErrorAlert from "./erroralert";
 
 /**
@@ -16,15 +17,25 @@ export function activate(context) {
 	);
 
 	context.subscriptions.push(
-		vscode.commands.registerCommand('extension.count', ()=>runCount(insertResult))
+		vscode.commands.registerCommand('extension.count', ()=>runCount(insertResult, eCountMode.numeric))
+	);
+
+	context.subscriptions.push(
+		vscode.commands.registerCommand('extension.countAlpha', ()=>runCount(insertResult, eCountMode.alpha))
 	);
 }
 
-function runCount ( editMaker : IEditMaker ) {
-	let erroralert = new ErrorAlert();
+enum eCountMode {
+	alpha,
+	numeric
+}
 
-	let actorFunction : IActorOnEveryEditor  = function ( errorLogger : ErrorAlert, textEditorEdit: vscode.TextEditorEdit, activeTextEditor, selection : vscode.Selection, index : number ){
-		editMaker( textEditorEdit, selection, index);
+function runCount ( editMaker : IEditMaker, countMode : eCountMode ) {
+	const erroralert = new ErrorAlert();
+
+	const actorFunction : IActorOnEveryEditor  = function ( errorLogger : ErrorAlert, textEditorEdit: vscode.TextEditorEdit, activeTextEditor, selection : vscode.Selection, index : number ){
+		const countValue = countMode === eCountMode.numeric ? index : lib.indexToAlpha(index);
+		editMaker( textEditorEdit, selection, countValue);
 	};
 
 	onEveryEditor(erroralert,actorFunction);
