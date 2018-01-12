@@ -17,5 +17,5 @@ Uses [Math.js](https://github.com/josdejong/mathjs) for evaluating expressions. 
 - **Calculate and Replace** calculates selected expression, and replaces it with the result
 
 ## License
-Copyright (c) 2016 Andrew Carreiro
+Copyright (c) 2018 Andrew Carreiro
 Licensed under the WTFPL license.

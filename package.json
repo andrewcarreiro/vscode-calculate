@@ -44,9 +44,9 @@
   },
   "devDependencies": {
     "typescript": "2.0.0",
-    "vscode": "^0.11.14"
+    "vscode": "^1.1.10"
   },
   "dependencies": {
-    "mathjs": "3.3.0"
+    "mathjs": "3.17.0"
   }
 }
