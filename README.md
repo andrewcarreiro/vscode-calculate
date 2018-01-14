@@ -10,6 +10,10 @@ Uses [Math.js](https://github.com/josdejong/mathjs) for evaluating expressions. 
 2. Enter the Command Pallette (F1), and type "calculate"
 3. The evaluated result will appear after your selection
 
+## Counter
+
+The `$i` in any selection is replaced by the index of the selection. For example if you have three identical selections `2*$i+1` the results will be `3`, `5` and `7`.
+
 ![Selecting multiple items and running the calculate function](https://i.imgur.com/a1LDrLH.gif "Selecting multiple items and running the calculate function")
 
 ## Available Commands
