@@ -67,11 +67,16 @@ interface IEditMaker {
 }
 
 let insertResult : IEditMaker = function ( edit : vscode.TextEditorEdit, selection : vscode.Selection, result : number){
-	edit.insert(selection.end, "="+result);
+	edit.insert(selection.end, "="+round(result));
 }
 
 let overwriteResult : IEditMaker = function ( edit : vscode.TextEditorEdit, selection : vscode.Selection, result : number){
-	edit.replace(selection,String(result));
+	edit.replace(selection,String(round(result)));
+}
+
+function round(n: number){
+	// Round to 5 decimal places
+	return Math.round(n * 1000000) / 1000000;
 }
 
 
