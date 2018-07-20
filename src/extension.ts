@@ -44,7 +44,7 @@ function runCalculate ( editMaker : IEditMaker ){
 				}
 				
 				try{
-					var evaluatedMath = math.eval(selectedText.toString());
+					var evaluatedMath = math.eval(selectedText.toString().replace(/,/g,'.'));
 					editMaker(textEditorEdit,selection,evaluatedMath);
 				}catch (e){
 					erroralert.saveError("CALC_ERR",selectedText.toString());
