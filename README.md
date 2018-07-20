@@ -1,8 +1,6 @@
 # Visual Studio Code Calculate
 
 ## About 
-This extension is based on [Colinta's excellent Sublime Text Calculate package](https://github.com/colinta/SublimeCalculate) which has been a great tool for years.
-
 Uses [Math.js](https://github.com/josdejong/mathjs) for evaluating expressions. If it works there, it should work here!
 
 ## How to use
@@ -19,6 +17,10 @@ The `$i` in any selection is replaced by the index of the selection. For example
 ## Available Commands
 - **Calculate** calculates selected expression, and appends "=" with the result
 - **Calculate and Replace** calculates selected expression, and replaces it with the result
+
+## Acknowledgements
+- This extension is based on [Colinta's excellent Sublime Text Calculate package](https://github.com/colinta/SublimeCalculate) which has been a great tool for me for years.
+- Support for comma decimals by [robertopc](https://github.com/robertopc)
 
 ## License
 Copyright (c) 2018 Andrew Carreiro
